@@ -6,13 +6,19 @@ RUN		apt-get update && apt-get -y install \
 		php-fpm \
 		php-mysql
 
-RUN		curl -L -O https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php \
-			&& mkdir -p /var/www/html \
-			&& mv ./adminer-4.8.1.php /var/www/html/index.php \
-			&& adduser -u 82 -D -S -G www-data www-data
+RUN		mkdir /run/php
 
-COPY	./conf/www.conf	/etc/php7.4/php-fpm.d/www.conf
+RUN		curl -L -O https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
+
+#RUN		mv ./adminer-4.8.1.php /var/www/html/adminer.php
+			#&& adduser www-data www-data
+
+
+COPY	./tools/adminer_auto.sh /tmp/adminer_auto.sh
+#COPY	./conf/www.conf	/etc/php7.4/php-fpm.d/www.conf
+
+RUN	chmod +X /tmp/adminer_auto.sh
 
 EXPOSE	9000
 
-CMD		["php-fpm7.4", "--nodaemonize"]
+CMD		["sh", "/tmp/adminer_auto.sh"]

@@ -1,4 +1,4 @@
-DCK	= 	docker compose -f
+DCK	= 	docker-compose -f
 
 BFLAG =	up -d --build
 CFLAG = stop

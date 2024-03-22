@@ -1,6 +1,5 @@
 if [ ! -f "etc/vsftpd_on" ]; then
 
-	#mv /tmp/vsftpd.conf etc/vsftpd.conf
 	cp etc/vsftpd.conf etc/vsftpd_on
 
 	service vsftpd start
@@ -26,6 +25,3 @@ if [ ! -f "etc/vsftpd_on" ]; then
 fi
 
 /usr/sbin/vsftpd
-
-
-#service vsftpd start

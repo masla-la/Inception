@@ -26,13 +26,13 @@ else
 
 	wp config set WP_REDIS_HOST redis --allow-root
 	
-	wp config set WP_REDIS_PORT 6379 --allow-root #--raw
+	wp config set WP_REDIS_PORT 6379 --allow-root
 
 	wp config set WP_CAHCHE_KEY_SALT $DOMAIN_NAME --allow-root
 
 	wp config set WP_REDIS_CLIENT phpredis --allow-root
 
-	wp plugin install redis-cache --active --allow-root
+	wp plugin install redis-cache --activate --allow-root
 
 	wp plugin update --all --allow-root
 	

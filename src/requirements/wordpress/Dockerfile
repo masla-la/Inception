@@ -4,7 +4,8 @@ RUN	apt-get update && apt-get -y install \
 		curl \
 		php7.4 \
 		php-fpm \
-		php-mysql
+		php-mysql \
+		php-redis
 
 RUN	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 		&& chmod +x wp-cli.phar \

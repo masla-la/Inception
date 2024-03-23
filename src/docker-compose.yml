@@ -102,16 +102,21 @@ services:
       - inception
     restart: always
   cadvisor:
-    container_name: cadminer
-    build: ./requirements/bonus/cadvisor/.
+    container_name: cadvisor
+    build:
+      context: ./requirements/bonus/cadvisor/.
+    networks:
+      - inception
+    ports:
+      - "8080:8080"
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:ro
+      - /var/run:/var/run:rw
       - /sys:/sys:ro
-      - /var/lib/docker:/var/lib/ocker:ro
-    port:
-      - "8080:8080"
-    network:
-      - inception
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    cap_add:
+      - SYS_ADMIN
     restart: always
-
